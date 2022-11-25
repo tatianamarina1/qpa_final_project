@@ -1,3 +1,5 @@
+from sqlalchemy import create_engine
+
 def read_codon_table():
     path_to_file = 'data/codon_table.csv'
     
@@ -27,3 +29,6 @@ def convert_rna_to_protein(string):
         amino_acid = CODON_DICT[triplet]
         protein.append(amino_acid)
     return ''.join(protein)
+
+db_engine = create_engine("sqlite:///data/connection_rules.db", echo=True)
+
