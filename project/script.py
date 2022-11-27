@@ -10,7 +10,6 @@ def convert_dna_to_rna(string):
     for char_dna in string:
         char_rna = DNA_RNA_DICT[char_dna]
         string_rna.append(char_rna)
-        
     return ''.join(string_rna)
 
 
