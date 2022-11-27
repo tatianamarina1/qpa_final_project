@@ -35,3 +35,11 @@ def read_dna_rna_db():
         for item in dna_rna_table:
             dna_rna_map[item.dna_gene] = item.rna_gene.rna_gene
     return dna_rna_map
+
+
+def read_genome(path_to_file):
+    with open(path_to_file, 'rt', encoding='utf-8') as genome_file:
+        contents = genome_file.readlines()
+    return ''.join([row.strip() for row in contents[1:]])
+        
+    
