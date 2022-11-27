@@ -1,7 +1,7 @@
 from sqlalchemy.orm import sessionmaker
 
 from db_data_types import DNA, RNA, Codon, Polypeptide, Base
-from script import read_codon_table, db_engine
+from data_io import read_codon_table, db_engine
 
 Base.metadata.create_all(db_engine)
 

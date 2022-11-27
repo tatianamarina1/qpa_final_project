@@ -1,26 +1,20 @@
-from sqlalchemy import create_engine
+from data_io import read_codon_table, read_codon_db, read_dna_rna_db
 
-def read_codon_table():
-    path_to_file = 'data/codon_table.csv'
-    
-    with open(path_to_file, 'rt', encoding='utf8') as codon_table:
-        contents = codon_table.readlines()
-        
-    codon_dict = {}
-    
-    for line in contents:
-        codon = line.split(',')
-        codon_dict[codon[0]] = codon[2].replace('Stop', '.')
-    
-    return codon_dict
+#CODON_DICT = read_codon_table()
+CODON_DICT = read_codon_db()
+DNA_RNA_DICT = read_dna_rna_db()
 
-CODON_DICT = read_codon_table()
 
 def convert_dna_to_rna(string):
-    return str(string).replace("T", "U")
+    string_rna = []
+    for char_dna in string:
+        char_rna = DNA_RNA_DICT[char_dna]
+        string_rna.append(char_rna)
+        
+    return ''.join(string_rna)
+
 
 def convert_rna_to_protein(string):
-    
     protein = []
     for i in range(0, len(string), 3):
         if len(string[i:i + 3]) != 3:
@@ -29,6 +23,3 @@ def convert_rna_to_protein(string):
         amino_acid = CODON_DICT[triplet]
         protein.append(amino_acid)
     return ''.join(protein)
-
-db_engine = create_engine("sqlite:///data/connection_rules.db", echo=True)
-
