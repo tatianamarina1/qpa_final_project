@@ -3,7 +3,7 @@ from sqlalchemy.orm import sessionmaker
 
 from db_data_types import Codon, DNA
 
-db_engine = create_engine("sqlite:///data/connection_rules.db", echo=True)
+db_engine = create_engine("sqlite:///data/connection_rules.db")
 codon_csv = 'data/codon_table.csv'
 
 
