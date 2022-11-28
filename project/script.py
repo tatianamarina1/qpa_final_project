@@ -1,5 +1,6 @@
 from data_io import read_codon_table, read_codon_db, read_dna_rna_db, read_genome
 import matplotlib.pyplot as plt 
+import sys
 
 #CODON_DICT = read_codon_table()
 CODON_DICT = read_codon_db()
@@ -48,3 +49,23 @@ def plot_genome(string, step=100, output_file='image/gc_ratio.png'):
     plt.savefig(output_file)
     # function to show the plot 
     plt.show()
+
+    
+#Command Line Arguments
+
+if len(sys.argv) > 1:
+    if sys.argv[1] == 'convert_dna_to_rna':
+        print(convert_dna_to_rna(sys.argv[2]))
+    elif sys.argv[1] == 'convert_rna_to_protein':
+        print(convert_rna_to_protein(sys.argv[2]))
+    elif sys.argv[1] == 'plot_genome':
+        if len(sys.argv) > 3:
+            plot_genome(sys.argv[2], int(sys.argv[3]))
+        else:
+            plot_genome(sys.argv[2])
+    else:
+        print('This function does not exist')
+else:
+    print('''Use command 
+    python script.py function_name arguments....''')
+    
