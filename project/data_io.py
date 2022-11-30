@@ -3,9 +3,10 @@ from sqlalchemy.orm import sessionmaker
 
 from db_data_types import Codon, DNA
 
-db_engine = create_engine("sqlite:///data/connection_rules.db")
+db_engine = create_engine("postgresql+psycopg2://postgres:docker@genome_db:5432/genome_db")
 codon_csv = 'data/codon_table.csv'
 
+Session = sessionmaker(bind=db_engine)
 
 def read_codon_table():
     with open(codon_csv, 'rt', encoding='utf8') as codon_table:
@@ -18,7 +19,6 @@ def read_codon_table():
 
 
 def read_codon_db():
-    Session = sessionmaker(bind=db_engine)
     with Session() as session:
         all_codons = session.query(Codon).all()
         codon_map = {}
@@ -28,7 +28,6 @@ def read_codon_db():
 
 
 def read_dna_rna_db():
-    Session = sessionmaker(bind=db_engine)
     with Session() as session:
         dna_rna_table = session.query(DNA).all()
         dna_rna_map = {}
