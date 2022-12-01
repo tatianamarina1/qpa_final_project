@@ -51,25 +51,35 @@ Consists of three functions *test_dna_to_rna*, *test_rna_to_protein*, *test_gc_r
 
 ## How to Install and Run the Project
 
-1. Create *network* using command 'docker network create <name>'. Example: 'docker network create genome_net'
+1. Create *network* using command `docker network create <network_name>`.
 
-2. Set name and password for database and run command 'docker run -it --name genome_db -v <path>:/var/lib/postgresql/data -p 5432:5432 -e POSTGRES_PASSWORD=<psw> -e POSTGRES_DB=<name> --network <name> postgres'. 
-    Example:
-'docker run -it --name genome_db -v C:\Users\suri-\Python_scripts\Quantori\q_final_project\project\genome_db:/var/lib/postgresql/data -p 5432:5432 -e POSTGRES_PASSWORD=docker -e POSTGRES_DB=genome_db --network genome_net postgres'
+Example: `docker network create genome_net`
+
+2. Set name and password for database and run command 
+
+`docker run -it --name genome_db -v <path>:/var/lib/postgresql/data -p 5432:5432 -e POSTGRES_PASSWORD=<psw> -e POSTGRES_DB=<database_name> --network <network_name> postgres`. 
+   
+   Example:
+   
+```docker run -it --name genome_db -v C:\Users\suri-\Python_scripts\Quantori\q_final_project\project\genome_db:/var/lib/postgresql/data -p 5432:5432 -e POSTGRES_PASSWORD=docker -e POSTGRES_DB=genome_db --network genome_net postgres```
     
-3. To fill database use command 'docker run -v C:\Users\suri-\Python_scripts\Quantori\q_final_project\project\image:/image --network genome_net quantori_genome python fill_db.py'. Make sure that the correct URL is inside data_io.py.
-    Example: 'db_engine = create_engine("postgresql+psycopg2://postgres:docker@genome_db:5432/genome_db")'
+3. To fill database use command 
 
-3. Build docker for the project via command 'docker build -t quantori_genome .' 
+`docker run --network genome_net quantori_genome python fill_db.py`. 
 
-4. To work with Command Line Arguments set function from *script.py* and set input data (like *string* and *step*)
+4. Build docker for the project via command `docker build -t quantori_genome .` 
+
+5. To work with Command Line Arguments set function from *script.py* and set input data (like *string* and *step*)
+    
     Examples:
-'docker run -v C:\Users\suri-\Python_scripts\Quantori\q_final_project\project\image:/image --network genome_net quantori_genome python script.py plot_genome AAAACCCTTTTGGGG 3'
+    
+`docker run -v C:\Users\suri-\Python_scripts\Quantori\q_final_project\project\image:/image --network genome_net quantori_genome python script.py plot_genome AAAACCCTTTTGGGG 3`
 
-'docker run -v C:\Users\suri-\Python_scripts\Quantori\q_final_project\project\image:/image --network genome_net quantori_genome python script.py convert_dna_to_rna AAAACCCTTTTGGGG'
+`docker run --network genome_net quantori_genome python script.py convert_dna_to_rna AAAACCCTTTTGGGG`
 
-'docker run -v C:\Users\suri-\Python_scripts\Quantori\q_final_project\project\image:/image --network genome_net quantori_genome python script.py convert_rna_to_protein AAAACCCUUUUGGGG'
+`docker run --network genome_net quantori_genome python script.py convert_rna_to_protein AAAACCCUUUUGGGG`
 
-5. Use the following command to run tests
-'docker run -v C:\Users\suri-\Python_scripts\Quantori\q_final_project\project\image:/image --network genome_net quantori_genome python test.py'
+6. Use the following command to run tests
+
+`docker run --network genome_net quantori_genome python test.py`
 
