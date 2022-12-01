@@ -26,19 +26,25 @@ def convert_rna_to_protein(string):
     return ''.join(protein)
 
 
-def plot_genome(string, step=100, output_file='image/gc_ratio.png'):
+def gc_ratio_value(string):
+    g_count = string.count('G')
+    c_count = string.count('C')
+    return (g_count + c_count) * 100 / len(string)
+
+def gc_ratio_coordinates(string, step):
     x = []
     y = []
     for i in range(0, len(string), step):
         block = string[i:i + step]
         if len(block) != step:
             break
-        g_count = block.count('G')
-        c_count = block.count('C')
-        gc_ratio = (g_count + c_count) * 100 / step
+        gc_ratio = gc_ratio_value(block)
         x.append(i)
         y.append(gc_ratio)
-        
+    return x, y
+
+def plot_genome(string, step=100, output_file='image/gc_ratio.png'):
+    x, y = gc_ratio_coordinates(string, step)
     # plotting the points  
     plt.plot(x, y)
     # naming the x axis 
@@ -50,7 +56,6 @@ def plot_genome(string, step=100, output_file='image/gc_ratio.png'):
     # function to show the plot 
     plt.show()
 
-    
 #Command Line Arguments
 
 if len(sys.argv) > 1:
@@ -65,6 +70,8 @@ if len(sys.argv) > 1:
             plot_genome(sys.argv[2])
     else:
         print('This function does not exist')
+elif sys.argv[0] == 'test.py':
+        print('Running test ...')
 else:
     print('''Use command 
     python script.py function_name arguments....''')
