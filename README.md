@@ -20,34 +20,16 @@ The following tasks will be covered in this project:
 
 ## Table of Contents
 
-*project/script.py*
-
-Consists of functions:
-
-**mandatory**
-- *convert_dna_to_rna* transcripts DNA strand to RNA strand. The input and output data set as strings.
-- *convert_rna_to_protein* translates every codon of RNA strand to protein. The input and output data set as strings.
-- *plot_genome* plots graph "GC-content ratio". The horizontal axis of this graph is the genome position. The vertical axis is the G-C ratio in the window. Default size of a window is 100 bases and called *step*.
-
-**auxiliary**
-- *gc_ratio_value* calculates GC-ratio for one interval
-- *gc_ratio_coordinates* calculates two lists. The first list includes genome position like 0, step, 2*step, 3*step, and so on. The second one includes GC-ratio for this intervals in DNA strand.
-
-*project/test.py*
-
-Consists of three functions *test_dna_to_rna*, *test_rna_to_protein*, *test_gc_ratio* that tests *convert_dna_to_rna*, *convert_rna_to_protein*, and *gc_ratio_coordinates* respectively.
-
-*project/data_io.py* implements functions for reading tables from file or from database and return dictionaries to use in script.py. Also it includes *read_genome* to read genome sequence from file.
-
-*project/db_data_types.py* defines database structure
-
-*project/fill_db.py* fills Database with tables
-
-*project/sars_cov_2_plot_gc_ratio.py* plots GC-ratio for genome sequence as an example
-
-*project/data* includes *codon_table.csv* that maps codon of RNA to protein, *connection_rules.db* that was created via sqlite-command, *sars_cov_2.fna* that was used as GC-ratio example
-
-*project/image* includes output file for GC-ratio graph
+File | Description 
+--- | --- 
+*project/script.py* | Consists of functions: <br> **mandatory** <br> - *convert_dna_to_rna* transcripts DNA strand to RNA strand. The input and output data set as strings. <br> - *convert_rna_to_protein* translates every codon of RNA strand to protein. The input and output data set as strings. <br> - *plot_genome* plots graph "GC-content ratio". The horizontal axis of this graph is the genome position. The vertical axis is the G-C ratio in the window. Default size of a window is 100 bases and called *step*. <br> **auxiliary** <br>  - *gc_ratio_value* calculates GC-ratio for one interval <br> - *gc_ratio_coordinates* calculates two lists. The first list includes genome position like 0, step, 2*step, 3*step, and so on. The second one includes GC-ratio for this intervals in DNA strand. 
+*project/test.py* | Consists of three functions *test_dna_to_rna*, *test_rna_to_protein*, *test_gc_ratio* that tests *convert_dna_to_rna*, *convert_rna_to_protein*, and *gc_ratio_coordinates* respectively.
+*project/data_io.py* | implements functions for reading tables from file or from database and return dictionaries to use in script.py. Also it includes *read_genome* to read genome sequence from file.
+*project/db_data_types.py* | defines database structure
+*project/fill_db.py* | fills Database with tables
+*project/sars_cov_2_plot_gc_ratio.py* | plots GC-ratio for genome sequence as an example
+*project/data* | includes *codon_table.csv* that maps codon of RNA to protein, *connection_rules.db* that was created via sqlite-command, *sars_cov_2.fna* that was used as GC-ratio example
+*project/image* | includes output file for GC-ratio graph
 
 ## How to Install and Run the Project
 
