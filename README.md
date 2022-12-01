@@ -45,11 +45,11 @@ Example: `docker network create genome_net`
    
 ```docker run -it --name genome_db -v C:\Users\suri-\Python_scripts\Quantori\q_final_project\project\genome_db:/var/lib/postgresql/data -p 5432:5432 -e POSTGRES_PASSWORD=docker -e POSTGRES_DB=genome_db --network genome_net postgres```
     
-3. To fill database use command 
+3. Build docker for the project via command `docker build -t quantori_genome .`
+
+4. To fill database use command 
 
 `docker run --network genome_net quantori_genome python fill_db.py`. 
-
-4. Build docker for the project via command `docker build -t quantori_genome .` 
 
 5. To work with Command Line Arguments set function from *script.py* and set input data (like *string* and *step*)
     
